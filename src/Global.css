@@ -1,0 +1,59 @@
+.mainBackground {
+	overflow: auto;
+	margin: 0;
+	padding: 0;
+	background-color: #111f28;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+}
+.loadIcon {
+	width: 150px;
+	height: 150px;
+	-webkit-animation-name:             rotate; 
+	-webkit-animation-duration:         1.5s; 
+	-webkit-animation-iteration-count:  infinite;
+	-webkit-animation-timing-function: linear;
+}
+.loadScreen {
+	overflow: auto;
+	margin: 0;
+	padding: 0;
+	background-color: #111f28;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	align-items: center;
+	justify-content: center;
+}
+.loadText{
+	margin-top: 20px; 
+}
+
+@-webkit-keyframes rotate {
+  from {
+	-webkit-transform: rotate(0deg);
+  }
+  to { 
+	-webkit-transform: rotate(360deg);
+  }
+}
+
+h1 {
+	font-size: 5rem;
+	color: white;
+}
+h2 {
+	font-size: 3.5rem;
+	color: white;
+}
+h3 {
+	font-size: 1.5rem;
+	color: white;
+}
+h4 {
+	font-size: 2.5rem;
+	color: white;
+}

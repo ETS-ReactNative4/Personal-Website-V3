@@ -1,0 +1,61 @@
+.App {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+}
+.drawer {
+  background-color: #484e52;
+  display: flex;
+  flex-direction: row;
+}
+.drawerExpand {
+	background-color: #353a3d;
+	width: 22px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.menuArrows {
+	margin: 0;
+	width: 15px;
+	align-self: flex-end;
+}
+.menuItem {
+	margin: 0;
+	padding: 0;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+.menuText {
+	margin: 0;
+	padding: 0;
+	margin-left: 10px;
+	margin-right: 10px;
+	user-select: none;
+}
+.menuSeperators {
+	border-bottom-width: 1px;
+	border-left-width: 0px;
+	border-right-width: 0px;
+	border-top-width: 0px;
+	border-style: solid;
+	border-color: #afb9c5;
+}
+.spaceFill {
+	height: 5vh;
+}
+.sideMenu-enter {
+  transform: translate(-100%);
+}
+.sideMenu-enter.sideMenu-enter-active {
+  transform: translate(0%);
+  transition: transform 300ms ease-in-out;
+}
+.sideMenu-leave {
+  transform: translate(0%);
+}
+.sideMenu-leave.sideMenu-leave-active {
+  transform: translate(-100%);
+  transition: transform 300ms ease-in-out;
+}
