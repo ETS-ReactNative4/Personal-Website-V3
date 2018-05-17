@@ -86,7 +86,6 @@ class App extends Component {
             <img className="menuArrows" src={require('./assets/menuArrow.png')} alt=""/>
             <img className="menuArrows" src={require('./assets/menuArrow.png')} alt=""/>
             <img className="menuArrows" src={require('./assets/menuArrow.png')} alt=""/>
-            <img className="menuArrows" src={require('./assets/menuArrow.png')} alt=""/>
           </div>
         </div>
         {(this.state.currPage === 'about_me') ? (
