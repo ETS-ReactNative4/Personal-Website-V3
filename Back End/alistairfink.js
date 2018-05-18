@@ -29,7 +29,7 @@ MongoClient.connect("mongodb://localhost:27017/", function(err, database) {
   	.get(function(req, res) {
       db.collection(collections.about).find({}).toArray(function(err, result) {
           if (err) throw err;
-        res.json(result[0].desc);
+        res.json(result[0]);
       });
   	});
   router.route('/GetPortfolioList')
@@ -168,12 +168,13 @@ MongoClient.connect("mongodb://localhost:27017/", function(err, database) {
             let request = req.body;
             for(let obj in request)
             {
-              if(fields.include(obj))
+              if(fields.includes(obj))
               {
                 dbUpdate[obj] = request[obj];
               }
             }
             db.collection(collections.about).updateOne({_id: id}, {$set: dbUpdate})
+            res.json({message: 'success'});
           }
           else res.json({error: "Item not found"});
         });
@@ -195,12 +196,13 @@ MongoClient.connect("mongodb://localhost:27017/", function(err, database) {
             let request = req.body;
             for(let obj in request)
             {
-              if(fields.include(obj))
+              if(fields.includes(obj))
               {
                 dbUpdate[obj] = request[obj];
               }
             }
             db.collection(collections.portfolio).updateOne({_id: id}, {$set: dbUpdate})
+            res.json({message: 'success'});
           }
           else res.json({error: "Item not found"});
         });
@@ -223,12 +225,13 @@ MongoClient.connect("mongodb://localhost:27017/", function(err, database) {
             let request = req.body;
             for(let obj in request)
             {
-              if(fields.include(obj))
+              if(fields.includes(obj))
               {
                 dbUpdate[obj] = request[obj];
               }
             }
             db.collection(collections.about).updateOne({_id: id}, {$set: dbUpdate})
+            res.json({message: 'success'});
           }
           else res.json({error: "Item not found"});
         });
@@ -251,12 +254,13 @@ MongoClient.connect("mongodb://localhost:27017/", function(err, database) {
             let request = req.body;
             for(let obj in request)
             {
-              if(fields.include(obj))
+              if(fields.includes(obj))
               {
                 dbUpdate[obj] = request[obj];
               }
             }
             db.collection(collections.about).updateOne({_id: id}, {$set: dbUpdate})
+            res.json({message: 'success'});
           }
           else res.json({error: "Item not found"});
         });
