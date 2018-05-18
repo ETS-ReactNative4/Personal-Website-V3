@@ -12,8 +12,8 @@ app.use(bodyParser.json());
 var port = process.env.PORT || 8081;
 
 var router = express.Router();
-var apiKey = 'GBTtwNE$AZe9M=kxh526dd-#yTfXjsv^h';
-var dbName = 'alistairfink';
+var apiKey = '';
+var dbName = '';
 var collections = {
   about: 'About',
   portfolio: 'Portfolio',
@@ -41,7 +41,8 @@ MongoClient.connect("mongodb://localhost:27017/", function(err, database) {
         {
           let tempObj = {
             name: result[i].name,
-            dspImg: result[i].dspImg
+            dspImg: result[i].dspImg,
+            _id: result[i]._id
           };
           itemList.push(tempObj);
         }
@@ -90,7 +91,10 @@ MongoClient.connect("mongodb://localhost:27017/", function(err, database) {
         }
         for(let temp in tempObj)
         {
-          if(!tempObj[temp]) res.json({error: "All Fields are Required"});
+          if(!tempObj[temp]) {
+            res.json({error: "All Fields are Required"});
+            return;
+          }
         }
         db.collection(collections.portfolio).insertOne(tempObj, function(err, resp) {
           if (err) throw err;
@@ -115,11 +119,14 @@ MongoClient.connect("mongodb://localhost:27017/", function(err, database) {
         }
         for(let temp in tempObj)
         {
-          if(!tempObj[temp]) res.json({error: "All Fields are Required"});
+          if(!tempObj[temp]) {
+            res.json({error: "All Fields are Required"});
+            return;
+          }
         }
         db.collection(collections.experience).insertOne(tempObj, function(err, resp) {
           if (err) throw err;
-          res.json(resp);
+          res.json({message: "success"});
         });
       }
       else res.json({error: "Incorrect API Key"});
@@ -143,7 +150,10 @@ MongoClient.connect("mongodb://localhost:27017/", function(err, database) {
         }
         for(let temp in tempObj)
         {
-          if(!tempObj[temp]) res.json({error: "All Fields are Required"});
+          if(!tempObj[temp]) {
+            res.json({error: "All Fields are Required"});
+            return;
+          }
         }
         db.collection(collections.education).insertOne(tempObj, function(err, resp) {
           if (err) throw err;
@@ -217,7 +227,7 @@ MongoClient.connect("mongodb://localhost:27017/", function(err, database) {
       if(callKey === apiKey)
       {
         let id = new mongo.ObjectID(req.body._id);
-        db.collection(collections.about).find({_id: id}).toArray(function(err, result) {
+        db.collection(collections.experience).find({_id: id}).toArray(function(err, result) {
           if (err) throw err;
           if(result[0])
           {
@@ -230,7 +240,7 @@ MongoClient.connect("mongodb://localhost:27017/", function(err, database) {
                 dbUpdate[obj] = request[obj];
               }
             }
-            db.collection(collections.about).updateOne({_id: id}, {$set: dbUpdate})
+            db.collection(collections.experience).updateOne({_id: id}, {$set: dbUpdate})
             res.json({message: 'success'});
           }
           else res.json({error: "Item not found"});
@@ -246,7 +256,7 @@ MongoClient.connect("mongodb://localhost:27017/", function(err, database) {
       if(callKey === apiKey)
       {
         let id = new mongo.ObjectID(req.body._id);
-        db.collection(collections.about).find({_id: id}).toArray(function(err, result) {
+        db.collection(collections.education).find({_id: id}).toArray(function(err, result) {
           if (err) throw err;
           if(result[0])
           {
@@ -259,7 +269,7 @@ MongoClient.connect("mongodb://localhost:27017/", function(err, database) {
                 dbUpdate[obj] = request[obj];
               }
             }
-            db.collection(collections.about).updateOne({_id: id}, {$set: dbUpdate})
+            db.collection(collections.education).updateOne({_id: id}, {$set: dbUpdate})
             res.json({message: 'success'});
           }
           else res.json({error: "Item not found"});
