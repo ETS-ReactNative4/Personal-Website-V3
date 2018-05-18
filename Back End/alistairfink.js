@@ -50,7 +50,7 @@ MongoClient.connect("mongodb://localhost:27017/", function(err, database) {
   	});
   router.route('/GetPortfolioItem')
   	.post(function(req, res) {
-      let itemId = new mongo.ObjectId(res._id);
+      let itemId = new mongo.ObjectId(req.body._id);
       db.collection(collections.portfolio).find({_id: itemId}).toArray(function(err, result) {
         if (err) throw err;
         if(result[0])
@@ -78,83 +78,190 @@ MongoClient.connect("mongodb://localhost:27017/", function(err, database) {
 
   router.route('/AddPortfolio')
   	.post(function(req, res) {
-      let callKey = res.apiKey;
+      let callKey = req.body.apiKey;
       if(callKey === apiKey)
       {
         let tempObj = {
-
+          name: req.body.name,
+          dspImg: req.body.dspImg,
+          desc: Array.isArray(req.body.desc) ? req.body.desc : null,
+          images: Array.isArray(req.body.images) ? req.body.images : null,
+          videos: Array.isArray(req.body.videos) ? req.body.videos : null
         }
         for(let temp in tempObj)
         {
           if(!tempObj[temp]) res.json({error: "All Fields are Required"});
         }
-        db.collection(collections.portfolio).insertOne(tempObj, function(err, res) {
+        db.collection(collections.portfolio).insertOne(tempObj, function(err, resp) {
           if (err) throw err;
+          res.json(resp);
         });
-        res.json({message: 'success'})
       }
       else res.json({error: "Incorrect API Key"});
   	});
   router.route('/AddExperience')
   	.post(function(req, res) {
-      let callKey = res.apiKey;
+      let callKey = req.body.apiKey;
       if(callKey === apiKey)
       {
         let tempObj = {
-
+          position: req.body.position,
+          start: req.body.start,
+          end: req.body.end,
+          comp: req.body.comp,
+          location: req.body.location,
+          data: Array.isArray(req.body.data) ? req.body.data : null,
+          img: req.body.img
         }
         for(let temp in tempObj)
         {
           if(!tempObj[temp]) res.json({error: "All Fields are Required"});
         }
-        db.collection(collections.experience).insertOne(tempObj, function(err, res) {
+        db.collection(collections.experience).insertOne(tempObj, function(err, resp) {
           if (err) throw err;
+          res.json(resp);
         });
-        res.json({message: 'success'})
       }
       else res.json({error: "Incorrect API Key"});
   	});
   router.route('/AddEducation')
   	.post(function(req, res) {
-      let callKey = res.apiKey;
+      let callKey = req.body.apiKey;
       if(callKey === apiKey)
       {
         let tempObj = {
-
+          school: req.body.school,
+          start: req.body.start,
+          end: req.body.end,
+          scholarships: Array.isArray(req.body.scholarships) ? req.body.scholarships : null,
+          awards: Array.isArray(req.body.awards) ? req.body.awards : null,
+          location: req.body.location,
+          title: req.body.title,
+          notableProj: Array.isArray(req.body.notableProj) ? req.body.notableProj : null,
+          extraCuric: Array.isArray(req.body.extraCuric) ? req.body.extraCuric : null,
+          img: req.body.img
         }
         for(let temp in tempObj)
         {
           if(!tempObj[temp]) res.json({error: "All Fields are Required"});
         }
-        db.collection(collections.education).insertOne(tempObj, function(err, res) {
+        db.collection(collections.education).insertOne(tempObj, function(err, resp) {
           if (err) throw err;
+          res.json(resp);
         });
-        res.json({message: 'success'})
       }
       else res.json({error: "Incorrect API Key"});
   	});
 
   router.route('/EditAbout')
   	.post(function(req, res) {
-      let res
-      let dbUpdate = {
-              name: 'sergio2',
-              job: 'homeless'
-      };
-      let id = new mongo.ObjectID("5afe02a795a9331a86c65e2a");
-      db.collection('data3').updateOne({_id: id}, {$set:dbUpdate});
-
+      let callKey = req.body.apiKey;
+      let fields = ['desc', 'img'];
+      if(callKey === apiKey)
+      {
+        let id = new mongo.ObjectID(req.body._id);
+        db.collection(collections.about).find({_id: id}).toArray(function(err, result) {
+          if (err) throw err;
+          if(result[0])
+          {
+            let dbUpdate = {};
+            let request = req.body;
+            for(let obj in request)
+            {
+              if(fields.include(obj))
+              {
+                dbUpdate[obj] = request[obj];
+              }
+            }
+            db.collection(collections.about).updateOne({_id: id}, {$set: dbUpdate})
+          }
+          else res.json({error: "Item not found"});
+        });
+      }
+      else res.json({error: "Incorrect API Key"});
   	});
   router.route('/EditPortfolio')
   	.post(function(req, res) {
+      let callKey = req.body.apiKey;
+      let fields = ['name', 'dspImg', 'desc', 'images', 'videos'];
+      if(callKey === apiKey)
+      {
+        let id = new mongo.ObjectID(req.body._id);
+        db.collection(collections.portfolio).find({_id: id}).toArray(function(err, result) {
+          if (err) throw err;
+          if(result[0])
+          {
+            let dbUpdate = {};
+            let request = req.body;
+            for(let obj in request)
+            {
+              if(fields.include(obj))
+              {
+                dbUpdate[obj] = request[obj];
+              }
+            }
+            db.collection(collections.portfolio).updateOne({_id: id}, {$set: dbUpdate})
+          }
+          else res.json({error: "Item not found"});
+        });
+      }
+      else res.json({error: "Incorrect API Key"});
 
   	});
   router.route('/EditExperience')
   	.post(function(req, res) {
+      let callKey = req.body.apiKey;
+      let fields = ['position', 'start', 'end', 'comp', 'location', 'data', 'img'];
+      if(callKey === apiKey)
+      {
+        let id = new mongo.ObjectID(req.body._id);
+        db.collection(collections.about).find({_id: id}).toArray(function(err, result) {
+          if (err) throw err;
+          if(result[0])
+          {
+            let dbUpdate = {};
+            let request = req.body;
+            for(let obj in request)
+            {
+              if(fields.include(obj))
+              {
+                dbUpdate[obj] = request[obj];
+              }
+            }
+            db.collection(collections.about).updateOne({_id: id}, {$set: dbUpdate})
+          }
+          else res.json({error: "Item not found"});
+        });
+      }
+      else res.json({error: "Incorrect API Key"});
 
   	});
   router.route('/EditEducation')
   	.post(function(req, res) {
+      let callKey = req.body.apiKey;
+      let fields = ['school', 'start', 'end', 'scholarships', 'awards', 'location', 'title', 'notableProj', 'extraCuric', 'img'];
+      if(callKey === apiKey)
+      {
+        let id = new mongo.ObjectID(req.body._id);
+        db.collection(collections.about).find({_id: id}).toArray(function(err, result) {
+          if (err) throw err;
+          if(result[0])
+          {
+            let dbUpdate = {};
+            let request = req.body;
+            for(let obj in request)
+            {
+              if(fields.include(obj))
+              {
+                dbUpdate[obj] = request[obj];
+              }
+            }
+            db.collection(collections.about).updateOne({_id: id}, {$set: dbUpdate})
+          }
+          else res.json({error: "Item not found"});
+        });
+      }
+      else res.json({error: "Incorrect API Key"});
 
   	});
 
