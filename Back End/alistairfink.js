@@ -1,6 +1,8 @@
 let express = require('express');
 let app = express();
 let bodyParser = require('body-parser');
+var cors = require('cors');
+app.use(cors());
 
 var url  = 'mongodb://localhost:27017/';
 var MongoClient = require('mongodb').MongoClient;
@@ -25,13 +27,15 @@ MongoClient.connect("mongodb://localhost:27017/", function(err, database) {
 	if (!err) console.log("connected");
 	let db = database.db(dbName);
 
+  router.all('*', cors());
+
   router.route('/GetAbout')
-  	.get(function(req, res) {
+	.get(function(req, res) {
       db.collection(collections.about).find({}).toArray(function(err, result) {
           if (err) throw err;
         res.json(result[0]);
       });
-  	});
+  });
   router.route('/GetPortfolioList')
   	.get(function(req, res) {
       db.collection(collections.portfolio).find({}).toArray(function(err, result) {
@@ -42,6 +46,7 @@ MongoClient.connect("mongodb://localhost:27017/", function(err, database) {
           let tempObj = {
             name: result[i].name,
             dspImg: result[i].dspImg,
+            year: result[i].year,
             _id: result[i]._id
           };
           itemList.push(tempObj);
@@ -87,7 +92,8 @@ MongoClient.connect("mongodb://localhost:27017/", function(err, database) {
           dspImg: req.body.dspImg,
           desc: Array.isArray(req.body.desc) ? req.body.desc : null,
           images: Array.isArray(req.body.images) ? req.body.images : null,
-          videos: Array.isArray(req.body.videos) ? req.body.videos : null
+          videos: Array.isArray(req.body.videos) ? req.body.videos : null,
+          year: req.body.year
         }
         for(let temp in tempObj)
         {
@@ -194,7 +200,7 @@ MongoClient.connect("mongodb://localhost:27017/", function(err, database) {
   router.route('/EditPortfolio')
   	.post(function(req, res) {
       let callKey = req.body.apiKey;
-      let fields = ['name', 'dspImg', 'desc', 'images', 'videos'];
+      let fields = ['name', 'dspImg', 'desc', 'images', 'videos', 'year'];
       if(callKey === apiKey)
       {
         let id = new mongo.ObjectID(req.body._id);
