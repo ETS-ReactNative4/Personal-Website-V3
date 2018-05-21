@@ -14,6 +14,7 @@ class Education extends Component {
 		};
 	}
 	componentDidMount() {
+    //Fetches Edu data
 		fetch(Globals.apiEndPoint + 'GetEducation',{
 		  //mode: "no-cors",
 		  method: "GET",
@@ -23,6 +24,7 @@ class Education extends Component {
     })
     .then((response) => response.json())
     .then((responseJson) => {
+      //DB stores from oldest to newest so need to reverse order of array
     	responseJson.reverse();
     	this.setState({
     		items: responseJson,
@@ -31,6 +33,7 @@ class Education extends Component {
     })
 	}
 	dynamicStyle() {
+    //Similar dynamic stuff. Makes things nice on phone
     let width = window.innerWidth;
     let flex = '';
     if(width < 640)
@@ -42,6 +45,7 @@ class Education extends Component {
     }
 	}
 	imgDynamic() {
+    //Img dynamic stuff for phones and stuff.
     let width = window.innerWidth;
     if(width < 640)
 	    return {

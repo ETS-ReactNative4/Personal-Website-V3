@@ -14,8 +14,8 @@ class AboutMe extends Component {
 		};
 	}
 	componentDidMount() {
+		//Fetches About Data
 		fetch(Globals.apiEndPoint + 'GetAbout',{
-		  //mode: "no-cors",
 		  method: "GET",
 		  headers: {
 		    "Accept": "application/json"
@@ -31,6 +31,7 @@ class AboutMe extends Component {
     })
 	}
 	dynamicStyle() {
+		//For responsive design. Makes things stack instead of side by side
     let width = window.innerWidth;
     let flex = '';
     if(width < 640)
@@ -42,6 +43,7 @@ class AboutMe extends Component {
     }
 	}
 	picDynamic() { 
+		//Changes pic size based on screen size. -> Responsive design
 		let width = window.innerWidth;
     if(width < 640)
 	    return {
@@ -53,6 +55,7 @@ class AboutMe extends Component {
 	    }
 	}
 	picContainerDynamic() {
+		//Changes cotainer width.
 		if(window.innderWidth < 640)
 		{
 			return {

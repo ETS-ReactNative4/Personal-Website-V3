@@ -16,6 +16,7 @@ class PortfolioItem extends Component {
 		};
 	}
 	componentDidMount() {
+		//Fetches data for particular portfolio item.
 		fetch(Globals.apiEndPoint + 'GetPortfolioItem', {
 		  method: 'POST',
 		  headers: {
@@ -35,6 +36,7 @@ class PortfolioItem extends Component {
     })
 	}
 	dynamicWidth() {
+		//Dynamic width of portfolio item screen. ie. should be full on phones and about 60vw on desktop.
 		let width = window.innerWidth;
 		let winWidth = width < 640 ? width-22 + 'px' : '60vw';
 		return {
@@ -90,8 +92,8 @@ class Portfolio extends Component {
 		};
 	}
 	componentDidMount() {
+		//Gets list of all items.
 		fetch(Globals.apiEndPoint + 'GetPortfolioList',{
-		  //mode: "no-cors",
 		  method: "GET",
 		  headers: {
 		    "Accept": "application/json"
@@ -99,6 +101,7 @@ class Portfolio extends Component {
     })
     .then((response) => response.json())
     .then((responseJson) => {
+    	//Sorts array into objects grouped by year. Then sets each grouping into array position.
     	let temp = _.groupBy(responseJson, 'year');
     	let tempArr = [];
     	for(let obj in temp)
@@ -114,11 +117,13 @@ class Portfolio extends Component {
 	}
 	openItem(item)
 	{
+		//If click on item it sets dspItem unless something is already open.
 		if(this.state.dspItem) return;
 		this.setState({dspItem: item});
 	}
 	closeItem()
 	{
+		//Closes
 		this.setState({dspItem: null});
 	}
   render() {

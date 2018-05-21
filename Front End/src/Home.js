@@ -5,6 +5,7 @@ import './Global.css';
 
 class Home extends Component {
 	dynamicLinkStyle() {
+		//Dynamic styles for the resume, etc. links
 		let width = window.innerWidth;
     let flex = '';
     if(width < 640) flex = 'column';

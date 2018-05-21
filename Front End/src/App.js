@@ -12,7 +12,7 @@ import Portfolio from './Portfolio';
 
 
 
-class Drawer extends Component {
+class Drawer extends Component {//Drawer Buttons
   render() {
     return(
       <div>
@@ -40,6 +40,7 @@ class Drawer extends Component {
     );
   }
 }
+//Base64 for menu bar imgae
 let imgSrc = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALoAAADwCAYAAAC3zX77AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOwgAADsIBFShKgAAAABl0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMC4xNkRpr/UAAALUSURBVHhe7dqhAcMAEMPAjFxa1NHTBTyB/sARYUM/7/tC3oxQMyPUzAg1M0LNjFAzI9TMCDUzQs2MUDMj1MwINTNCzYxQMyPUzAg1M0LNjFAzI9TMCDUzQs2MUPN8vr8X6gydEwydEwydEwydEwydEwydEwydEwydEwydEwydEwydEwydEwydEwydE+Z3F2pmhJoZoWZGqJkRamaEmhmhZkaomRFqZoSaGaFmRqiZEWpmhJoZoWZGqJkRamaEmhmhZkaomRFqZoSaGaFmRqiZEWpmhJoZoWZGqJkRamaEmhmhZkaomRFqZoSaGaFmRqiZEWpmhJoZoWZGqJkRamaEmhmhZkaomRFqns/390KdoXOCoXOCoXOCoXOCoXOCoXOCoXOCoXOCoXOCoXOCoXOCoXOCoXOCoXPC/O5CzYxQMyPUzAg1M0LNjFAzI9TMCDUzQs2MUDMj1MwINTNCzYxQMyPUzAg1M0LNjFAzI9TMCDUzQs2MUDMj1MwINTNCzYxQMyPUzAg1M0LNjFAzI9TMCDUzQs2MUDMj1MwINTNCzYxQMyPUzAg1M0LNjFAzI9TMCDUzQs3z+f5eqDN0TjB0TjB0TjB0TjB0TjB0TjB0TjB0TjB0TjB0TjB0TjB0TjB0TjB0TpjfXaiZEWpmhJoZoWZGqJkRamaEmhmhZkaomRFqZoSaGaFmRqiZEWpmhJoZoWZGqJkRamaEmhmhZkaomRFqZoSaGaFmRqiZEWpmhJoZoWZGqJkRamaEmhmhZkaomRFqZoSaGaFmRqiZEWpmhJoZoWZGqJkRamaEmhmhZkaoeT7f3wt1hs4Jhs4Jhs4Jhs4Jhs4Jhs4Jhs4Jhs4Jhs4Jhs4Jhs4Jhs4Jhs4Jhs4J87sLNTNCzYxQMyPUzAg1M0LNjFAzI9TMCDUzQs2MUDMj1MwINTNCzYxQMyPUzAg1M0LNjFAzI9TMCDUzQs2M0PI+f9yAptLgkPPvAAAAAElFTkSuQmCC';
 class App extends Component {
   constructor(props){
@@ -50,6 +51,7 @@ class App extends Component {
     });
   }
   changePage(page) {
+    //Closes menu for phones if an option is chosen
     let width = window.innerWidth;
     if(width < 640)
     {
@@ -59,6 +61,7 @@ class App extends Component {
     this.setState({currPage:page});
   }
   componentWillMount() {
+    //Defualt menu open for desktop and closed for phones
     let width = window.innerWidth;
     if(width <= 640)
       this.setState({menuOpen: false});

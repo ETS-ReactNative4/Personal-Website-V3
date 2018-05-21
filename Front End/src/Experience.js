@@ -14,6 +14,7 @@ class Experience extends Component {
 		};
 	}
 	componentDidMount() {
+    //Fetches experience data
 		fetch(Globals.apiEndPoint + 'GetExperience',{
 		  //mode: "no-cors",
 		  method: "GET",
@@ -23,6 +24,7 @@ class Experience extends Component {
     })
     .then((response) => response.json())
     .then((responseJson) => {
+      //DB stores from oldest to newest so need to reverse
     	responseJson.reverse();
     	this.setState({
     		items: responseJson,
@@ -30,6 +32,7 @@ class Experience extends Component {
     	});
     })
 	}
+  //Below to similar to education page.
 	dynamicStyle() {
     let width = window.innerWidth;
     let flex = '';
