@@ -1,0 +1,26 @@
+.contentBox {
+	display: flex;
+	flex: 1;
+}
+.contentLeft {
+	display: flex;
+	flex-direction: column;
+	padding: 0px;
+	margin: 0px;
+}
+.contentRight {
+	height: auto;
+	justify-content: center;
+}
+.contentRightInner {
+	display: flex;
+	justify-content: center;
+}
+.profileImage {
+	border-radius: 15px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.contactTitle {
+	margin-left: 20px;
+}

@@ -21,7 +21,7 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-	margin-top: 25vh;
+	margin-top: 20vh;
 	flex-wrap: wrap;
 }
 .button {
@@ -36,6 +36,17 @@
 }
 .buttonText {
 	user-select: none;
+}
+.links {
+	display: flex;
+	margin-bottom: 0px;
+	margin-top: 5vh;
+	justify-content: center;
+}
+.innerLink {
+	margin: 20px;
+	margin-top: 0px;
+	margin-bottom: 0px;
 }
 
 h3 {

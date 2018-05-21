@@ -9,13 +9,10 @@ import Education from './Education';
 import Expereince from './Experience';
 import Portfolio from './Portfolio';
 
-// eslint-disable-next-line
-class Drawer extends Component {
 
-// eslint-disable-next-line
-  constructor(props){
-    super(props);
-  }
+
+
+class Drawer extends Component {
   render() {
     return(
       <div>
@@ -43,7 +40,7 @@ class Drawer extends Component {
     );
   }
 }
-
+let imgSrc = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALoAAADwCAYAAAC3zX77AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOwgAADsIBFShKgAAAABl0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMC4xNkRpr/UAAALUSURBVHhe7dqhAcMAEMPAjFxa1NHTBTyB/sARYUM/7/tC3oxQMyPUzAg1M0LNjFAzI9TMCDUzQs2MUDMj1MwINTNCzYxQMyPUzAg1M0LNjFAzI9TMCDUzQs2MUPN8vr8X6gydEwydEwydEwydEwydEwydEwydEwydEwydEwydEwydEwydEwydEwydE+Z3F2pmhJoZoWZGqJkRamaEmhmhZkaomRFqZoSaGaFmRqiZEWpmhJoZoWZGqJkRamaEmhmhZkaomRFqZoSaGaFmRqiZEWpmhJoZoWZGqJkRamaEmhmhZkaomRFqZoSaGaFmRqiZEWpmhJoZoWZGqJkRamaEmhmhZkaomRFqns/390KdoXOCoXOCoXOCoXOCoXOCoXOCoXOCoXOCoXOCoXOCoXOCoXOCoXOCoXPC/O5CzYxQMyPUzAg1M0LNjFAzI9TMCDUzQs2MUDMj1MwINTNCzYxQMyPUzAg1M0LNjFAzI9TMCDUzQs2MUDMj1MwINTNCzYxQMyPUzAg1M0LNjFAzI9TMCDUzQs2MUDMj1MwINTNCzYxQMyPUzAg1M0LNjFAzI9TMCDUzQs3z+f5eqDN0TjB0TjB0TjB0TjB0TjB0TjB0TjB0TjB0TjB0TjB0TjB0TjB0TjB0TpjfXaiZEWpmhJoZoWZGqJkRamaEmhmhZkaomRFqZoSaGaFmRqiZEWpmhJoZoWZGqJkRamaEmhmhZkaomRFqZoSaGaFmRqiZEWpmhJoZoWZGqJkRamaEmhmhZkaomRFqZoSaGaFmRqiZEWpmhJoZoWZGqJkRamaEmhmhZkaoeT7f3wt1hs4Jhs4Jhs4Jhs4Jhs4Jhs4Jhs4Jhs4Jhs4Jhs4Jhs4Jhs4Jhs4Jhs4J87sLNTNCzYxQMyPUzAg1M0LNjFAzI9TMCDUzQs2MUDMj1MwINTNCzYxQMyPUzAg1M0LNjFAzI9TMCDUzQs2M0PI+f9yAptLgkPPvAAAAAElFTkSuQmCC';
 class App extends Component {
   constructor(props){
     super(props);
@@ -82,10 +79,10 @@ class App extends Component {
             }
           </ReactCSSTransitionGroup>
           <div onClick={() => this.setState({menuOpen: !this.state.menuOpen})} className="drawerExpand">
-            <img className="menuArrows" src={require('./assets/menuArrow.png')} alt=""/>
-            <img className="menuArrows" src={require('./assets/menuArrow.png')} alt=""/>
-            <img className="menuArrows" src={require('./assets/menuArrow.png')} alt=""/>
-            <img className="menuArrows" src={require('./assets/menuArrow.png')} alt=""/>
+            <img className="menuArrows" src={imgSrc} alt=""/>
+            <img className="menuArrows" src={imgSrc} alt=""/>
+            <img className="menuArrows" src={imgSrc} alt=""/>
+            <img className="menuArrows" src={imgSrc} alt=""/>
           </div>
         </div>
         {(this.state.currPage === 'about_me') ? (

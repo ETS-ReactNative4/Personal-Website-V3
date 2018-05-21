@@ -18,7 +18,9 @@
 }
 .menuArrows {
 	margin: 0;
-	width: 22px;
+	margin-right: 3px;
+	margin-left: 3px;
+	width: 16px;
 	align-self: flex-end;
 }
 .menuItem {
