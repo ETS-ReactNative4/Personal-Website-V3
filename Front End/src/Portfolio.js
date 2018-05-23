@@ -65,7 +65,7 @@ class PortfolioItem extends Component {
 						{this.state.item.videos &&
 							<div>
 								{this.state.item.videos.map((vid, index) => (
-									<iframe key={index} className='portfolioItemVideo' src={vid} frameborder="0" allowfullscreen></iframe>
+									<iframe key={index} title={this.state.item.name+'video'} className='portfolioItemVideo' src={vid} frameborder="0" allowfullscreen></iframe>
 								))}
 							</div>
 						}
