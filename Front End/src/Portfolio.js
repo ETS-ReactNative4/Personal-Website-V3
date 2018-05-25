@@ -5,6 +5,7 @@ import './Portfolio.css'
 import Loading from './Loading';
 import Globals from './Vars';
 import './Experience.css';
+import Linkify from 'linkifyjs/react';
 var _ = require('lodash');
 
 class PortfolioItem extends Component {
@@ -51,7 +52,7 @@ class PortfolioItem extends Component {
 					<div className='portfolioItemContent'>
 						<h2 className='portfolioItemTitle'>{this.state.item.name}</h2>
 						{this.state.item.desc.map((para, index) => (
-							<p key={index}>{para}</p>
+							<Linkify tagName="p" key={index}>{para}</Linkify>
 						))}
 						{this.state.item.images &&
 							<div>
