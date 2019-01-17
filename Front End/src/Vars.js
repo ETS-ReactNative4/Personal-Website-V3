@@ -1,3 +1,3 @@
 module.exports = {
-	apiEndPoint: 'http://api.alistairfink.com/alistairfink/',
+	apiEndPoint: 'https://api.alistairfink.com/alistairfink/',
 };
